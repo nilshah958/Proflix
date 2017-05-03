@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Proflix</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <title>Insert title here</title>
+<link rel="stylesheet" href="stylesheets/demo.css" type="text/css" media="all" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+          $.ajax({ 
+            type: 'GET',
+            url: "http://localhost:3000/getMovies",
+            success: function (moviesData) {
+                
+                $.each(moviesData, function(index,data){
+                       
+                        var  subDiv = document.createElement('div');
+                        subDiv.id = data.image;
+                        document.getElementById("movie-image").appendChild(subDiv);
+
+                        var img = new Image();
+                        img.src = "http://localhost:3000/stylesheets/images/"+data.image+".jpg";
+                        img.setAttribute("class","Image");
+                        img.setAttribute("name","Image");
+                        document.getElementById(''+data.image).appendChild(img);
+
+                        var movieName = document.createElement('p');
+                        movieName.id= data.image+"-name";
+                        var name = document.createTextNode(data.movieName);
+                        movieName.appendChild(name);
+                        document.getElementById(data.image).append(movieName);
+                        
+                        var movieButton = document.createElement('BUTTON');
+                        movieButton.id= data.image+"-button";
+                        movieButton.setAttribute("class", "btn btn-primary");
+                        var btnName = document.createTextNode("AddToCart");
+                        movieButton.appendChild(btnName);
+                        document.getElementById(data.image).append(movieButton);
+
+            //Add to cart for the particulat movie
+                        movieButton.onclick = function(){ 
+                          var dataToSend = {"image":data.image}; 
+                          $.ajax({ 
+                            type: 'POST',
+                            url: "http://localhost:3000/IssueMovie",
+                            data: dataToSend,
+                            dataType: "text",
+                            success: function(resultData){
+                                window.location.href = "http://localhost:3000/ViewCart";
+                            }});
+                        }
+
+                        });
+            },
+            error: function (xhr, status, error) {
+                alert("failed!!!Try Again");
+            }
+          });
+      });
+</script>
+<link rel="stylesheet" href="stylesheets/Userhome.css" type="text/css" media="all" /> 
+
+<!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+</head>
+<body>
+<!-- START PAGE SOURCE  -->
+<div id="shell">
+  <div id="header">
+    <h1 id="logo"><a href="http://localhost:3000/Home">Proflix</a></h1>
+    <div class="social"> <span>FOLLOW US ON:</span>
+      <ul>
+        <li><a class="twitter" href="https://twitter.com/?lang=en">twitter</a></li>
+        <li><a class="facebook" href="www.facebook.com">facebook</a></li>
+        <li><a class="vimeo" href="https://vimeo.com/">vimeo</a></li>
+        <li><a class="rss" href="https://www.rss.com/">rss</a></li>
+      </ul>
+    </div>
+
+   <!--  <div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="button" class="btn btn-default btn-sm" value="Logout" style="position: relative; left: 1000px; top:10px;"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+    </form>
+  </div> --> 
+
+  <div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="image" src="/img/Logout.jpg" class="btn btn-link btn-lg" value="Logout" width="100" height="15" style="position: relative; left: 1000px ; margin-top: 1px;"> Logout</button>
+    </form>
+  </div>
+    
+   
+    <div id="navigation">
+      <ul>
+        <li><a class="active" href="/Home">HOME</a></li>
+        <li><a href="/EditPersonalInfo">EDIT PROFILE</a></li>
+        <li><a href="/ViewCart">MY CART</a></li>
+        <li><a href="/OrderHistory">ORDER HISTORY</a></li>
+       <!--  <li><a href="/ReturnIssuedMovie">RETURN MOVIE</a></li> -->
+        <li><a href="/upgradePay">UPGRADE!!</a></li>
+      </ul>
+    </div>
+    <!-- <div id="sub-navigation">
+      <ul>
+        <li><a href="#">SHOW ALL</a></li>
+        <li><a href="#">LATEST TRAILERS</a></li>
+        <li><a href="#">TOP RATED</a></li>
+        <li><a href="#">MOST COMMENTED</a></li>
+      </ul>
+      <div id="search">
+        <form action="#" method="get" accept-charset="utf-8">
+          <label for="search-field">SEARCH</label>
+          <input type="text" name="search field" value="Enter search here" id="search-field" class="blink search-field"  />
+          <input type="submit" value="GO!" class="search-button" />
+        </form>
+      </div>
+    </div> -->
+  </div>
+  <div id="main">
+    <div id="content">
+      <div class="box">
+        <div class="head">
+         <!--  <h2>LATEST TRAILERS</h2> <br>
+          <p class="text-right"><a href="#">See all</a></p> -->
+        </div>
+
+       
+<!-- ************************************************************************************* -->
+  <div class="well" style="width:1155px; height:345px; color: white; overflow: scroll; overflow: auto;background-color: black;
+border-color: black; margin-left:-100px; margin-top:50px;">
+        <div id="movie-list-inline" style="display:inline-block; float: left;">
+        <div class="movie" >
+          <div  class="movie-image" id="movie-image">  
+              
+          </div>
+          <!-- <div class="rating">
+            <p class="movieName" id="movieName"></p>
+          </div>   -->
+        </div>
+        </div>
+      </div>
+<!-- ************************************************************************************* -->
+        <div class="cl">&nbsp;</div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div> 
+    </div>
+    </div>
+
+  <div id="footer">
+    <p class="lf">Copyright &copy; 2017 <a href="#">Proflix</a> - All Rights Reserved</p>
+    
+    <div style="clear:both;"></div>
+  </div>
+</div>
+<!-- <!-- END PAGE SOURCE -- -->
+</body>
+</html>

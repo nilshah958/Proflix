@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript"	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="ReturnMovie.js"></script>
+<title>Return Movie!!!</title>
+<link rel="stylesheet" href="stylesheets/AdminHome.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="stylesheets/demo.css" type="text/css" media="all" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="stylesheets/Userhome.css" type="text/css" media="all" /> 
+</head>
+<body>
+
+<div id="shell">
+  <div style="margin-left: -80px;" id="header">
+    <h1 id="logo"><a href="http://localhost:3000/Home">Proflix</a></h1>
+    <div class="social"> <span>FOLLOW US ON:</span>
+      <ul>
+        <li><a class="twitter" href="https://twitter.com/?lang=en">twitter</a></li>
+        <li><a class="facebook" href="www.facebook.com">facebook</a></li>
+        <li><a class="vimeo" href="https://vimeo.com/">vimeo</a></li>
+        <li><a class="rss" href="https://www.rss.com/">rss</a></li>
+      </ul>
+    </div>
+
+   <!--  <div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="button" class="btn btn-default btn-sm" value="Logout" style="position: relative; left: 1000px; top:10px;"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+    </form>
+  </div> --> 
+
+  <div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="image" src="/img/Logout.jpg" class="btn btn-link btn-lg" value="Logout" width="100" height="15" style="position: relative; left: 1000px ; margin-top: 1px;"> Logout</button>
+    </form>
+  </div>
+    
+   
+    <div id="navigation">
+      <ul>
+        <li><a  href="/DisplayMovie">HOME</a></li>
+        <li><a href="/EditPersonalInfo">EDIT PROFILE</a></li>
+        <li><a href="/ViewCart">MY CART</a></li>
+        <li><a href="/OrderHistory">ORDER HISTORY</a></li>
+        <li><a class="active" href="/ReturnIssuedMovie">RETURN MOVIE</a></li>
+        <li><a href="/upgradePay">UPGRADE!!</a></li>
+      </ul>
+    </div>
+
+		  <div id="home">
+		<form id="home" method="get" action="/Home">			
+			<input type="submit" class="btn btn-link btn-lg" value="Home"
+				width="20" height="15"
+				style="position: relative; top: -100px; left: -150px;"></button>
+		</form>
+	</div>
+		
+
+			<div class="container"> 
+      	<div style="height: 300px; margin-bottom: -20px; margin-top: -80px;" class="well">
+        <!-- <table class="table table-striped" width="900px" align="center" id="movies"> -->
+        <table class="table table-striped" width="900px" align="center" id="movies">
+
+			<!-- <table border="1" width="900px" align="center" id="movies"> -->
+			 <thead>
+				<tr>
+					<th>MovieId</th>
+					<th>Movie Name</th>
+					<th>Movie Banner</th>
+					<th>Release Date</th>
+					<th>Rent Amount</th>
+					<th>Category</th>
+					<th>Issue Date</th>
+					<th>Action</th>
+				</tr></thead>
+				<tbody>
+				{{#each IssuedHistory}}
+				<tr id="{{movieId}}">
+					<td>{{movieId}}</td>
+					<td>{{movieName}}</td>
+					<td>{{movieBanner}}</td>
+					<td>{{releaseDate}}</td>
+					<td>{{rentAmount}}</td>
+					<td>{{category}}</td>
+					<td>{{issueDate}}</td>
+					<td><input type="button" id="{{movieId}}" class="button"
+						value="Return" /></td>
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+			</br>
+			</br>
+		</form>
+
+<div style="height: 100px; margin-top: 220px;" id="footer">
+    <p class="lf">Copyright &copy; 2017 <a href="#">Proflix</a> - All Rights Reserved</p>
+    
+    <div style="clear:both; margin-bottom: 20px;"></div>
+  </div>
+</body>
+
+</html>

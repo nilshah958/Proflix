@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<title>Insert title here</title>
+<link rel="stylesheet" href="stylesheets/AdminHome.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="stylesheets/demo.css" type="text/css" media="all" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="stylesheets/Userhome.css" type="text/css" media="all" /> 
+</head>
+<body>
+<div id="shell">
+  <div id="header">
+    <h1 id="logo"><a href="http://localhost:3000/Home">Proflix</a></h1>
+    <div class="social"> <span>FOLLOW US ON:</span>
+      <ul>
+        <li><a class="twitter" href="https://twitter.com/?lang=en">twitter</a></li>
+        <li><a class="facebook" href="www.facebook.com">facebook</a></li>
+        <li><a class="vimeo" href="https://vimeo.com/">vimeo</a></li>
+        <li><a class="rss" href="https://www.rss.com/">rss</a></li>
+      </ul>
+    </div>
+
+   <!--  <div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="button" class="btn btn-default btn-sm" value="Logout" style="position: relative; left: 1000px; top:10px;"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+    </form>
+  </div> --> 
+
+
+<div id="logout">
+    <form id="logout" method="post" action="/logout"> 
+      <button type="image" src="/img/Logout.jpg" class="btn btn-link btn-lg" value="Logout" width="100" height="15" style="position: relative; left: 1000px ; margin-top: 1px;"> Logout</button>
+    </form>
+  </div>
+    
+   
+    <div id="navigation">
+      <ul>
+        <li><a  href="/Home">HOME</a></li>
+        <li><a  href="/EditPersonalInfo">EDIT PROFILE</a></li>
+        <li><a href="/ViewCart">MY CART</a></li>
+        <li><a class="active" href="/OrderHistory">ORDER HISTORY</a></li>
+        <!-- <li><a href="/ReturnIssuedMovie">RETURN MOVIE</a></li> -->
+        <li><a href="/upgradePay">UPGRADE!!</a></li>
+      </ul>
+    </div>
+
+		  <div id="home">
+		<form id="home" method="get" action="/Home">			
+			<input type="submit" class="btn btn-link btn-lg" value="Home"
+				width="20" height="15"
+				style="position: relative; top: -100px; left: -150px;"></button>
+		</form>
+	</div>
+<!-- <div id="logout">
+		<form id="logout" method="post" action="/logout">
+			<input type="image" src="/img/Logout.jpg" alt="Submit" value="Logout"
+				width="100" height="25"
+				style="position: fixed; top: 20px; left: 1101px;">
+		</form></div>
+		 <div align="left">
+		 {{#if membertype}}
+		<form id="home" method="get" action="/PremiumMemberHome">
+			<input type="submit"  value="Premium Member Home"
+				width="100" height="25"
+				>
+		</form>
+		</div>
+		
+		{{else}}
+		
+		<form id="home" method="get" action="/Home">
+			<input type="submit"  value="Simple Member Home"
+				width="100" height="25"
+				>
+		</form>
+		</div>
+		
+		{{/if}}
+ -->
+
+			</br>
+			</br>
+<h1><div align="center">Order History</div></h1>
+<form id='form4' method="post" action="/ProceedToPayment">
+			</br>
+			</br>
+
+            	<div class="container"> 
+      	<div style=" color: black; height: 200px; margin-bottom: -20px; margin-left: -90px; margin-right: 50px; margin-top: -100px;" class="well">
+        <!-- <table class="table table-striped" width="900px" align="center" id="movies"> -->
+        <table class="table table-striped" width="900px" align="center" id="movies">
+			<!-- <table border="1" width="900px" align="center" id="member"> -->
+			<!-- <table border="1" width="900px" align="center" id="movies"> -->
+			 <thead>
+				<tr>
+					<th>Order Id</th>
+					<th>Movie Id</th>
+					<th>Member Id</th>
+					<th>Issue Date</th>
+					<th>Quantity</th>
+					<th>Price</th>
+				</tr></thead>
+				<tbody>
+				{{#each orderHistory}}
+				<tr id="{{orderId}}">
+					<td>{{orderId}}</td>
+					<td>{{movieId}}</td>
+					<td>{{memberId}}</td>
+					<td>{{issueDate}}</td>
+					<td>{{quantity}}</td>
+					<td>{{price}}</td>
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+			</br>
+			</br>
+		</form>
+		
+		<div style="height: 100px; margin-top: 120px;" id="footer">
+    <p class="lf">Copyright &copy; 2017 <a href="#">Proflix</a> - All Rights Reserved</p>
+    
+    <div style="clear:both;"></div>
+  </div>
+		
+		
+		
+</body>
+</html>

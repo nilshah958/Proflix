@@ -1,0 +1,3 @@
+light blue: #8CCCFF
+dark blue: #0B3A66
+ivory white: #FBFFFF
